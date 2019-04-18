@@ -9,7 +9,7 @@ import re
 
 from properform import properform
 
-def commit(file):
+def commit(url, token, profile):
 	originRe = re.compile(r'https://github.com/(?P<user>[^/]+)/(?P<project>[^\.]+).git', re.I)
 	with os.popen('git remote get-url origin') as proc:
 		line = proc.readline()
@@ -32,8 +32,8 @@ def commit(file):
 		while line:
 			commit, line = line, proc.readline().strip()
 
-	properform.Push('localhost/properform', '0b37c65b380753a0bad936678ba9e682', project, commit, file, branch)
+	properform.Push(url + '/properform', token, project, commit, profile, branch)
 
 if __name__ == '__main__':
 	import sys
-	commit(sys.argv[1])
+	commit(*sys.argv[1:])
