@@ -2,5 +2,5 @@ language: python
 python:
     - "2.7"
 script:
-    - python -B -m cProfile -o demo.prof src\demo.py
-    - [ -d /home/travis/profile ] && cp demo.prof /home/travis/profile/demo.prof
+    - python -B -m cProfile -o demo.prof src/demo.py
+    - "[ -d /home/travis/profile ] && cp demo.prof /home/travis/profile/demo.prof"
