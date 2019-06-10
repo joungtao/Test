@@ -11,7 +11,7 @@ from properform import properform
 
 def commit(url, token, profile):
 	originRe = re.compile(r'https://github.com/(?P<user>[^/]+)/(?P<project>[^\.]+).git', re.I)
-	with os.popen('git remote get-url origin') as proc:
+	with os.popen('git config --get remote.origin.url') as proc:
 		line = proc.readline()
 		while line:
 			m = originRe.match(line)
