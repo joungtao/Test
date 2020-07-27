@@ -4,17 +4,18 @@ from properform import profile, memory_leak
 profile.start()
 memory_leak.start()
 
-def calc(f, g, a, n, m):
+def calc(f, g, a):
+	i = 0
 	result = 0
-	for i in range(m):
-		if a >= i and a - i < n:
+	while i < len(g):
+		if a >= i and a - i < len(f):
 			result += f[a - i] * g[i]
+		i += 1
 	return result
 
-def convolution(f, g ):
-	n, m = len(f), len(g)
-	json.dumps({'result': n}, indent = 4)
-	return [calc(f, g, i, n, m) for i in range(n)]
+def convolution(f, g):
+	json.dumps({'result': 0}, indent = 4)
+	return [calc(f, g, i) for i in range(len(f))]
 
 class test_bound_method_A(object):
 	def foo(self):
